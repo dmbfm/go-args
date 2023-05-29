@@ -1,6 +1,7 @@
 package args
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -46,6 +47,7 @@ type ArgKind int
 const (
 	ArgBool = iota
 	ArgString
+	ArgAction
 )
 
 type Arg struct {
@@ -102,8 +104,18 @@ func (p *Parser) Parse(toks []Token) error {
 			var ok bool
 
 			if isLong {
+
+				if t.Value == "help" {
+					return ErrorHelp
+				}
+
 				flag, ok = p.GetFlag(t.Value, "")
 			} else {
+
+				if t.Value == "h" {
+					return ErrorHelp
+				}
+
 				flag, ok = p.GetFlag("", t.Value)
 			}
 
@@ -189,3 +201,5 @@ func Command(prefix string, suffix string) {
 	commandInfo.Prefix = prefix
 	commandInfo.Suffix = suffix
 }
+
+var ErrorHelp = errors.New("Help")
