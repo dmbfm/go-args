@@ -53,4 +53,5 @@ func main() {
 
 - [ ] Add tests
 - [ ] Support for numeric values
+- [ ] Automatic help flag
 
