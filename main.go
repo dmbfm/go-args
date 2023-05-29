@@ -170,3 +170,11 @@ func ParseArgs(args []string) ([]string, error) {
 
 	return parser.names, nil
 }
+
+func Usage(commandPrefix string, commandSuffix string) {
+	fmt.Printf("\nUSAGE:\n\t %s [options] %s\n", commandPrefix, commandSuffix)
+	fmt.Printf("\nOPTIONS:\n")
+	for _, f := range parser.flags {
+		fmt.Printf("\t-%s,--%s\t\t%s\n", f.Short, f.Long, f.Desc)
+	}
+}

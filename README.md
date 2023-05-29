@@ -1,3 +1,18 @@
+# go-args
+
+Small argument parser library for my persnoal use.
+
+## Usage
+
+Install via
+
+```
+$ go get github.com/dmbfm/go-args
+```
+
+Basic usage:
+
+```go
 package main
 
 import (
@@ -31,5 +46,6 @@ func main() {
 	}
 
 	fmt.Printf("\n\n%+v\n", options)
-
 }
+```
+
