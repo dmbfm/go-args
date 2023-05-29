@@ -4,7 +4,7 @@ Small argument parser library for my persnoal use.
 
 ## Usage
 
-Install via
+Install via:
 
 ```
 $ go get github.com/dmbfm/go-args
@@ -48,4 +48,9 @@ func main() {
 	fmt.Printf("\n\n%+v\n", options)
 }
 ```
+
+## Todo
+
+- [ ] Add tests
+- [ ] Support for numeric values
 
