@@ -130,7 +130,13 @@ func (p *Parser) Parse(toks []Token) error {
 	return nil
 }
 
+type CommandInfo struct {
+	Prefix string
+	Suffix string
+}
+
 var parser Parser
+var commandInfo CommandInfo
 
 func AddBool(long string, short string, ptr *bool, desc string) {
 	parser.flags = append(parser.flags, Arg{
@@ -171,10 +177,15 @@ func ParseArgs(args []string) ([]string, error) {
 	return parser.names, nil
 }
 
-func Usage(commandPrefix string, commandSuffix string) {
-	fmt.Printf("\nUSAGE:\n\t %s [options] %s\n", commandPrefix, commandSuffix)
-	fmt.Printf("\nOPTIONS:\n")
+func Usage() {
+	fmt.Printf("\nUSAGE:\n\n\t %s [options] %s\n", commandInfo.Prefix, commandInfo.Suffix)
+	fmt.Printf("\nOPTIONS:\n\n")
 	for _, f := range parser.flags {
 		fmt.Printf("\t-%s, --%s\t\t%s\n", f.Short, f.Long, f.Desc)
 	}
+}
+
+func Command(prefix string, suffix string) {
+	commandInfo.Prefix = prefix
+	commandInfo.Suffix = suffix
 }
