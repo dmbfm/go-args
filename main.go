@@ -190,10 +190,15 @@ func ParseArgs(args []string) ([]string, error) {
 }
 
 func Usage() {
-	fmt.Printf("\nUSAGE:\n\n\t %s [options] %s\n", commandInfo.Prefix, commandInfo.Suffix)
-	fmt.Printf("\nOPTIONS:\n\n")
-	for _, f := range parser.flags {
-		fmt.Printf("\t-%s, --%s\t\t%s\n", f.Short, f.Long, f.Desc)
+	if len(parser.flags) > 0 {
+		fmt.Printf("\nUSAGE:\n\n\t %s [options] %s\n", commandInfo.Prefix, commandInfo.Suffix)
+
+		fmt.Printf("\nOPTIONS:\n\n")
+		for _, f := range parser.flags {
+			fmt.Printf("\t-%s, --%s \t\t %s\n", f.Short, f.Long, f.Desc)
+		}
+	} else {
+		fmt.Printf("\nUSAGE:\n\n\t %s %s\n", commandInfo.Prefix, commandInfo.Suffix)
 	}
 }
 
